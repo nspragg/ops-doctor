@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
 
-const verifyProcess = require('./diagnostics/process');
+const cpu = require('./diagnostics/cpu');
 const networkDiagnostics = require('./diagnostics/network');
 
 function createTaskResult(type) {
@@ -12,7 +12,7 @@ function createTaskResult(type) {
   }
 }
 
-class Doctor {
+class OpsDoctor {
   constructor() {
     this.taskQueue = [];
     this.results = [];
@@ -20,8 +20,7 @@ class Doctor {
 
   process(query, expect) {
     const task = () => {
-      return verifyProcess(query)
-        .then(expect);
+      return cpu.ps(query).then(expect);
     };
     task.type = this.process.name;
     this.taskQueue.push(task);
@@ -39,33 +38,27 @@ class Doctor {
     return this;
   }
 
-  request() {
+  request() {}
 
+  loadaverage(expect) {
+    const task = () => {
+      return cpu.loadaverage().then(expect);
+    };
+    task.type = this.loadaverage.name;
+    this.taskQueue.push(task);
+
+    return this;
   }
 
-  loadaverage() {
+  diskspace() {}
 
-  }
+  exists() {}
 
-  diskspace() {
+  freeMemory() {}
 
-  }
+  totalMemory() {}
 
-  exists() {
-
-  }
-
-  freeMemory() {
-
-  }
-
-  totalMemory() {
-
-  }
-
-  uptime() {
-
-  }
+  uptime() {}
 
   plugin(plugin) {
     const method = Object.keys(plugin).pop();
@@ -102,7 +95,14 @@ class Doctor {
   }
 
   static create() {
-    return new Doctor();
+    return new OpsDoctor();
+  }
+
+  // TODO: extract to matchers
+  static lessThan(value) {
+    return (actual) => {
+      return actual < value;
+    };
   }
 
   static expect(value) {
@@ -110,6 +110,12 @@ class Doctor {
       return actual === value;
     };
   }
+
+  static greaterThan(value) {
+    return (actual) => {
+      return actual > value;
+    };
+  }
 }
 
-module.exports = Doctor;
+module.exports = OpsDoctor;

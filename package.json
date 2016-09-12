@@ -1,7 +1,7 @@
 {
   "name": "ops-doctor",
   "version": "1.0.0",
-  "description": "Refactor by example - dealing with long conditionals",
+  "description": "Runs a predefined spec of diagnostics to help identify ops issues",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./src ./test",
@@ -32,6 +32,7 @@
     "eslint": "^3.0.0",
     "istanbul": "^0.4.4",
     "mocha": "^3.0.0",
+    "nock": "^8.0.0",
     "sinon": "^1.17.4"
   },
   "eslintConfig": {
