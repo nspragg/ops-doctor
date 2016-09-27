@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/nspragg/ops-doctor.svg)](https://travis-ci.org/nspragg/ops-doctor) [![Coverage Status](https://coveralls.io/repos/github/nspragg/ops-doctor/badge.svg?branch=master)](https://coveralls.io/github/nspragg/ops-doctor?branch=master)
 
-> [WIP] Find operational issues when running predefined diagnostics
+> [WIP] Find operational issues by running predefined diagnostics
 
 * [Installation](#installation)
 * [Features](#features)
@@ -137,7 +137,7 @@ Registers a Ping check against `host`
 * host
 
 ##### Returns
-* Returns a OpsDoctor instance
+Returns an OpsDoctor instance.
 
 ### `.process(query) -> OpsDoctor`
 
@@ -147,7 +147,7 @@ Registers a process check for `query`
 * query - either a PID or a process name
 
 ##### Returns
-* Returns a OpsDoctor instance
+Returns an OpsDoctor instance.
 
 ### `.loadaverage(interval) -> OpsDoctor`
 
@@ -155,7 +155,7 @@ Registers a process check for `query`
 * interval - 1m, 5m or 15m
 
 ##### Returns
-* Returns a OpsDoctor instance
+Returns an OpsDoctor instance.
 
 ### `.exists(file, expect) -> OpsDoctor`
 
@@ -163,7 +163,7 @@ Registers a process check for `query`
 * file - fully qualified file name
 
 ##### Returns
-* Returns a OpsDoctor instance
+Returns an OpsDoctor instance.
 
 ### `.run() -> Promise`
 
