@@ -3,6 +3,8 @@ import Doctor from '../lib/ops-doctor';
 import sinon from 'sinon';
 
 const cpu = require('../lib/diagnostics/cpu.js');
+const disk = require('../lib/diagnostics/disk');
+
 const expect = Doctor.expect;
 const lessThan = Doctor.lessThan;
 const greaterThan = Doctor.greaterThan;
@@ -18,6 +20,7 @@ describe('OpsDoctor', () => {
     sandbox.stub(networkDiagnostics, 'ping').returns(Promise.resolve(true));
     sandbox.stub(cpu, 'ps').withArgs(RUNNING_PID).returns(Promise.resolve(true));
     sandbox.stub(cpu, 'loadaverage').returns(Promise.resolve(0.5));
+    sandbox.stub(disk, 'usage').returns(Promise.resolve(50));
   });
 
   afterEach(() => {
@@ -137,7 +140,7 @@ describe('OpsDoctor', () => {
     it('adds a given plugin with no args', () => {
       function sayCool() {
         return Promise.resolve('cool');
-      };
+      }
 
       return Doctor.create()
         .plugin({
@@ -199,6 +202,17 @@ describe('OpsDoctor', () => {
         .run()
         .then((results) => {
           assert.strictEqual(results[0].ok, true);
+        });
+    });
+  });
+
+  describe('diskspace', () => {
+    it('returns the percentage of diskspace used on a given mount', () => {
+      return Doctor.create()
+        .diskusage('/', expect(50))
+        .run()
+        .then((results) => {
+          assert.equal(results[0].ok, true);
         });
     });
   });

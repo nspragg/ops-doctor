@@ -8,7 +8,7 @@ const INDEXES = {
   5: 1,
   15: 2
 };
-const AVG_REGEX = /([0-9]{0,2})m?$/
+const AVG_REGEX = /([0-9]{0,2})m?$/;
 
 function byPid(pid) {
   try {

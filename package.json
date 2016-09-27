@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.6",
+    "diskusage": "^0.1.5",
     "lodash": "^4.13.1",
     "net-ping": "^1.2.0",
     "ping": "^0.2.0",

@@ -2,6 +2,7 @@ const Promise = require('bluebird');
 
 const cpu = require('./diagnostics/cpu');
 const networkDiagnostics = require('./diagnostics/network');
+const disk = require('./diagnostics/disk');
 
 function createTaskResult(type) {
   return (ok) => {
@@ -9,7 +10,7 @@ function createTaskResult(type) {
       type: type,
       ok: ok
     };
-  }
+  };
 }
 
 class OpsDoctor {
@@ -50,7 +51,15 @@ class OpsDoctor {
     return this;
   }
 
-  diskspace() {}
+  diskusage(path, expect) {
+    const task = () => {
+      return disk.usage().then(expect);
+    };
+    task.type = this.diskusage.name;
+    this.taskQueue.push(task);
+
+    return this;
+  }
 
   exists() {}
 

@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const assert = require('assert');
 const os = require('os');
 import sinon from 'sinon';
