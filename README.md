@@ -97,6 +97,26 @@ OpsDoctor.create()
   .then(console.log)
 ```
 
+#### Combine diagnostic checks
+
+Check that the load average is not at capacity and that a cert exists:
+
+```js
+function sayCool() {
+  return Promise.resolve('does something important');
+}
+
+const doctor = OpsDoctor.create();
+// add custom plugin
+doctor.plugin({
+  'saySomething' : sayCool
+});
+
+doctor.saySomething(expect('cool'))
+  .run()
+  .then(console.log)
+```
+
 #### cli support
 See [ops-doctor-cli](https://github.com/nspragg/ops-doctor-cli)
 
