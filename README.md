@@ -97,9 +97,9 @@ OpsDoctor.create()
   .then(console.log)
 ```
 
-#### Combine diagnostic checks
+#### Add custom diagnostics
 
-Check that the load average is not at capacity and that a cert exists:
+Add a custom check:
 
 ```js
 function sayCool() {
