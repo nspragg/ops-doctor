@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/nspragg/ops-doctor.svg)](https://travis-ci.org/nspragg/ops-doctor) [![Coverage Status](https://coveralls.io/repos/github/nspragg/ops-doctor/badge.svg?branch=master)](https://coveralls.io/github/nspragg/ops-doctor?branch=master)
 
-> [WIP] Find operational issues by running predefined diagnostics
+> Moved to: https://github.com/bbc/ops-doctor
+Find operational issues by running predefined diagnostics
 
 * [Installation](#installation)
 * [Features](#features)
